@@ -88,6 +88,10 @@ int main()
     cout << "Hi! How many values would you want in your vector? ";
     cin >> n;
     cout << "Enter your vector elements: ";
+    if(n==0)
+    {
+        return 0;// fixed error for the memory leak
+    }
     for( int i=0; i< n; i++)
     {
         int x=0;
