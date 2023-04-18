@@ -15,18 +15,19 @@ struct Node{
     int info;
     Node* next;
     Node* back;
-    static int counter;
+    int counter;
 
     Node() {
         
         next = NULL;
         back = NULL;
+        info=0;
+        counter=1;
         
     }
 
 
 };
 
- int Node:: counter =0;
 
 #endif /* Node_h */

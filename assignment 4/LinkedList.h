@@ -75,19 +75,48 @@ public:
     
     void deleteNode(Node* deletion)
     {
-        Node* q;
-        q=head;// mirror pointer
-        Node* previous = nullptr;
-        if (q == nullptr)// BASECASE
-               return;
-        while(q!= deletion && q != nullptr ) // q=2
+        if (head == deletion)
         {
-            previous=q;// p=1
-            q= q-> next;
+            head = head->next;
+            if (head != NULL)
+            {
+                head->back = NULL;
+            }
+            delete deletion;
         }
-        previous-> next=q->next;
-        delete q;
         
+        Node* previous = head;
+        while (previous->next != deletion && previous != NULL )
+        {
+            previous = previous->next;
+        }
+        
+        if (previous == NULL)
+        {
+            cout<<"The list is empty! Try another time"<<endl;
+            return;
+        }
+        
+        
+        
+        previous->next = deletion->next;
+        if (deletion->next != NULL)
+        {
+            deletion->next->back = previous;//
+            delete deletion;
+        }
+    }
+    int sumOfList()
+    {
+        int sum=0;
+        
+        Node* j= this-> get_head();
+        
+        while (j!= nullptr) {
+            sum= sum+ j-> info;
+            j=j-> next;
+        }
+        return sum;
     }
     void printList()
     {
@@ -96,9 +125,10 @@ public:
         
         while(p!= NULL)
         {
-            cout << p-> info;
+            cout << p-> info << " ";
             p=p->next;
         }
+        cout << endl;
     }
 
 };
